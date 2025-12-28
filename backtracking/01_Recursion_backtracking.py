@@ -114,33 +114,6 @@ def subsets(nums):
 print(subsets([1, 2, 3]))
 # [[], [1], [1,2], [1,2,3], [1,3], [2], [2,3], [3]]
 
-
-# ------------------------------------------------------------
-# PERMUTATIONS (BACKTRACKING)
-# ------------------------------------------------------------
-
-def permutations(nums):
-    result = []
-
-    def backtrack(path):
-        if len(path) == len(nums):
-            result.append(path.copy())
-            return
-
-        for num in nums:
-            if num in path:
-                continue
-            path.append(num)      # choose
-            backtrack(path)       # explore
-            path.pop()             # undo
-
-    backtrack([])
-    return result
-
-print(permutations([1, 2, 3]))
-# [[1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1]]
-
-
 # ------------------------------------------------------------
 # INTERVIEW QUICK RULES
 # ------------------------------------------------------------
