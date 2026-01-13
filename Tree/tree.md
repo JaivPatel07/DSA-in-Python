@@ -209,16 +209,3 @@ class Node:
 * Use **recursion** for DFS
 * Use **queue** for level order
 * Draw tree before coding
-
----
-
-## 12. Summary
-
-* Trees represent hierarchical data
-* Binary trees are the most important
-* Traversals are fundamental
-* BST and Heap are commonly asked
-
----
-
-✨ *Trees are the backbone of many advanced data structures. Master them well!*
