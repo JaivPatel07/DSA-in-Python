@@ -171,16 +171,3 @@ Space Complexity: **O(n)**
 
 * Limited access
 * Fixed size in array implementation
-
----
-
-## 13. Summary
-
-* Queue follows **FIFO**
-* Enqueue & Dequeue are core operations
-* Multiple variations exist
-* Widely used in real-world systems
-
----
-
-✨ *Queues keep systems organized and fair!*
