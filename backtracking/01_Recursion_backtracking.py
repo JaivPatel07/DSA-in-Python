@@ -1,34 +1,3 @@
-# ============================================================
-# RECURSION & BACKTRACKING – IMPORTANT NOTES ONLY
-# ============================================================
-
-# ------------------------------------------------------------
-# RECURSION
-# ------------------------------------------------------------
-
-# WHAT:
-# Function calling itself
-
-# MUST HAVE:
-# 1. Base Case  -> stops recursion
-# 2. Recursive Case -> moves towards base case
-
-# WHY:
-# Solves problems that can be broken into smaller subproblems
-
-# WHEN TO USE:
-# - Tree problems
-# - Divide & conquer
-# - DFS
-# - Mathematical problems
-
-# COMMON MISTAKES:
-# - Missing base case
-# - Not changing input
-
-# TIME:
-# Depends on recursion depth
-
 # ------------------------------------------------------------
 # BASIC RECURSION EXAMPLE
 # ------------------------------------------------------------
@@ -56,44 +25,6 @@ print_1_to_n(5)
 
 
 # ------------------------------------------------------------
-# BACKTRACKING
-# ------------------------------------------------------------
-
-# WHAT:
-# Try → Explore → Undo → Try next
-
-# WHY:
-# Explore all possibilities
-
-# KEY IDEA:
-# After recursive call → undo changes
-
-# WHEN TO USE:
-# - Permutations
-# - Combinations
-# - Subsets
-# - N-Queens
-# - Sudoku
-
-# COMMON LINE:
-# path.pop()   # undo step
-
-# ------------------------------------------------------------
-# BACKTRACKING TEMPLATE (IMPORTANT)
-# ------------------------------------------------------------
-
-# def backtrack(path, choices):
-#     if base_condition:
-#         answer.append(path.copy())
-#         return
-
-#     for choice in choices:
-#         path.append(choice)     # choose
-#         backtrack(path, choices) # explore
-#         path.pop()              # undo
-
-
-# ------------------------------------------------------------
 # SUBSETS (BACKTRACKING)
 # ------------------------------------------------------------
 
@@ -113,21 +44,3 @@ def subsets(nums):
 
 print(subsets([1, 2, 3]))
 # [[], [1], [1,2], [1,2,3], [1,3], [2], [2,3], [3]]
-
-# ------------------------------------------------------------
-# INTERVIEW QUICK RULES
-# ------------------------------------------------------------
-
-"""
-RECURSION:
-- Always define base case first
-- Think: smaller problem
-
-BACKTRACKING:
-- Choose → Explore → Undo
-- Use path.copy()
-- Undo is MUST
-
-IF STUCK:
-- Write recursion tree
-"""
