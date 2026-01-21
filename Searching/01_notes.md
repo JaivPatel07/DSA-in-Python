@@ -1,171 +1,233 @@
-# 🔁 Recursion & Backtracking – Complete Notes
-
-## 1. What is Recursion?
-
-**Recursion** is a programming technique where a function **calls itself** to solve a problem by breaking it into **smaller subproblems**.
-
-A recursive solution works until it reaches a **base case**.
+# Searching Algorithms – Complete Notes (MD)
 
 ---
 
-## 2. Components of Recursion
+## 📌 What is Searching?
 
-Every recursive function must have:
+**Searching** is the process of finding an element (key/target) in a data structure like an array, list, or string.
 
-1. **Base Case** – stops recursion
-2. **Recursive Case** – function calls itself
+---
+
+## 🔹 Types of Searching
+
+1. **Linear Search**
+2. **Binary Search**
+3. **Jump Search**
+4. **Interpolation Search**
+5. **Exponential Search**
+
+---
+
+## 1️⃣ Linear Search
+
+### 📖 Concept
+
+* Check elements **one by one**
+* Works on **sorted & unsorted** data
+
+### ✅ Algorithm
+
+1. Start from index 0
+2. Compare each element with target
+3. Stop if found or array ends
+
+### 💻 Code (Python)
 
 ```python
-def factorial(n):
-    if n == 0:        # Base case
-        return 1
-    return n * factorial(n - 1)  # Recursive case
+def linear_search(arr, target):
+    for i in range(len(arr)):
+        if arr[i] == target:
+            return i
+    return -1
 ```
 
----
+### ⏱ Time Complexity
 
-## 3. How Recursion Works (Call Stack)
+| Case    | Complexity |
+| ------- | ---------- |
+| Best    | O(1)       |
+| Average | O(n)       |
+| Worst   | O(n)       |
 
-* Each recursive call is stored in the **call stack**
-* Functions execute in **LIFO order**
-* Deep recursion may cause **stack overflow**
+### ✔ Pros / ❌ Cons
 
----
-
-## 4. Types of Recursion
-
-### 4.1 Direct Recursion
-
-Function calls itself directly.
-
-### 4.2 Indirect Recursion
-
-Function calls another function which calls the first one.
-
-### 4.3 Tail Recursion
-
-Recursive call is the **last statement** in function.
-
-### 4.4 Head Recursion
-
-Recursive call happens **before** processing.
+✔ Simple
+❌ Slow for large data
 
 ---
 
-## 5. Advantages & Disadvantages of Recursion
+## 2️⃣ Binary Search (Very Important ⭐⭐)
 
-### Advantages
+### 📖 Concept
 
-* Clean and readable code
-* Easy to solve complex problems
-* Matches mathematical definitions
+* Works only on **sorted arrays**
+* Divide array into halves
 
-### Disadvantages
+### ✅ Algorithm
 
-* Extra memory (call stack)
-* Slower than iteration
-* Risk of stack overflow
+1. Find mid element
+2. Compare with target
+3. Eliminate half
+4. Repeat
 
----
-
-## 6. What is Backtracking?
-
-**Backtracking** is an algorithmic technique where we:
-
-> Try a choice → If it fails, undo it → Try next choice
-
-It is mainly used to **explore all possible solutions**.
-
-Backtracking is usually implemented using **recursion**.
-
----
-
-## 7. General Backtracking Template
+### 💻 Code (Iterative)
 
 ```python
-def backtrack(path, choices):
-    if base_condition:
-        result.append(path)
-        return
-
-    for choice in choices:
-        path.append(choice)     # choose
-        backtrack(path, choices)  # explore
-        path.pop()              # un-choose
+def binary_search(arr, target):
+    low, high = 0, len(arr)-1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
 ```
 
----
+### ⏱ Time Complexity
 
-## 8. Types of Backtracking Problems
+| Case    | Complexity |
+| ------- | ---------- |
+| Best    | O(1)       |
+| Average | O(log n)   |
+| Worst   | O(log n)   |
 
-### 8.1 Decision Problems
-
-* Check if solution exists
-
-### 8.2 Optimization Problems
-
-* Find best solution
-
-### 8.3 Enumeration Problems
-
-* Find all solutions
+⚠️ **Array must be sorted**
 
 ---
 
-## 9. Recursion vs Backtracking
+## 3️⃣ Jump Search
 
-| Recursion                | Backtracking         |
-| ------------------------ | -------------------- |
-| Technique                | Algorithmic strategy |
-| Breaks problem           | Explores choices     |
-| May or may not backtrack | Always backtracks    |
+### 📖 Concept
 
----
+* Jump by fixed block size
+* Then do linear search in block
 
-## 10. Time & Space Complexity
+### 💻 Code
 
-* **Recursion**: Depends on depth of calls
-* **Backtracking**: Often **exponential** (O(2ⁿ), O(n!))
-* Space: O(depth of recursion)
+```python
+import math
 
----
+def jump_search(arr, target):
+    n = len(arr)
+    step = int(math.sqrt(n))
+    prev = 0
 
-## 11. Important Recursion Problems
+    while arr[min(step, n)-1] < target:
+        prev = step
+        step += int(math.sqrt(n))
+        if prev >= n:
+            return -1
 
-* Factorial
-* Fibonacci
-* Power of a number
-* Reverse a string
-* Print subsequences
-* Tower of Hanoi
+    for i in range(prev, min(step, n)):
+        if arr[i] == target:
+            return i
+    return -1
+```
 
----
+### ⏱ Time Complexity
 
-## 12. Important Backtracking Problems
-
-* Subsets
-* Permutations
-* Combinations
-* N-Queens
-* Sudoku Solver
-* Rat in a Maze
-* Word Search
+`O(√n)`
 
 ---
 
-## 13. Common Mistakes ⚠️
+## 4️⃣ Interpolation Search
 
-* Missing base case
-* Incorrect backtracking (not undoing choice)
-* Modifying global state incorrectly
-* Infinite recursion
+### 📖 Concept
+
+* Improved binary search
+* Uses **position formula**
+* Best for **uniformly distributed data**
+
+### 💻 Code
+
+```python
+def interpolation_search(arr, target):
+    low, high = 0, len(arr)-1
+
+    while low <= high and target >= arr[low] and target <= arr[high]:
+        pos = low + ((target - arr[low]) * (high - low) // (arr[high] - arr[low]))
+
+        if arr[pos] == target:
+            return pos
+        if arr[pos] < target:
+            low = pos + 1
+        else:
+            high = pos - 1
+    return -1
+```
+
+### ⏱ Time Complexity
+
+| Case    | Complexity   |
+| ------- | ------------ |
+| Best    | O(1)         |
+| Average | O(log log n) |
+| Worst   | O(n)         |
 
 ---
 
-## 14. Interview Tips 💡
+## 5️⃣ Exponential Search
 
-* Always define base case first
-* Think in terms of **choices → recursion → backtrack**
-* Use recursion tree visualization
-* Practice small examples
+### 📖 Concept
 
+* Used for **infinite / unbounded arrays**
+* Find range → apply binary search
+
+### 💻 Code
+
+```python
+def exponential_search(arr, target):
+    if arr[0] == target:
+        return 0
+
+    i = 1
+    while i < len(arr) and arr[i] <= target:
+        i *= 2
+
+    return binary_search(arr[i//2:min(i, len(arr))], target)
+```
+
+### ⏱ Time Complexity
+
+`O(log n)`
+
+---
+
+## 🔍 Comparison Table
+
+| Algorithm     | Sorted Needed | Time Complexity |
+| ------------- | ------------- | --------------- |
+| Linear        | ❌             | O(n)            |
+| Binary        | ✅             | O(log n)        |
+| Jump          | ✅             | O(√n)           |
+| Interpolation | ✅             | O(log log n)    |
+| Exponential   | ✅             | O(log n)        |
+
+---
+
+## 🎯 Real-Life Examples
+
+* **Linear Search** → Find contact in phone list
+* **Binary Search** → Dictionary word lookup
+* **Jump Search** → Page navigation
+
+---
+
+## ⚠️ Common Mistakes
+
+* Using binary search on unsorted array ❌
+* Overflow while calculating mid ❌
+* Infinite loop in while condition ❌
+
+---
+
+## 📌 Interview Tips
+
+* Always ask: **Is data sorted?**
+* Prefer **Binary Search** for large sorted data
+* Know time complexity by heart
+
+---
