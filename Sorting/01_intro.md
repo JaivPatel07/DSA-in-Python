@@ -254,13 +254,3 @@ def quick_sort(arr):
 * Merge & Quick sort are most asked
 
 ---
-
-## ✅ Summary
-
-* Sorting improves searching efficiency
-* Use Merge/Quick for large data
-* Use Insertion for small or nearly sorted data
-
----
-
-🧠 *Sorting is the backbone of DSA!* 🚀
