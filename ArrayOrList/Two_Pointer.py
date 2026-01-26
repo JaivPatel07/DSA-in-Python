@@ -61,7 +61,6 @@ print("Reversed:", arr2)
 # 2) Remove duplicates from sorted array
 arr3 = [1,1,2,2,3]
 res = []
-l = 0
 for r in range(len(arr3)):
     if r == 0 or arr3[r] != arr3[r-1]:
         res.append(arr3[r])
