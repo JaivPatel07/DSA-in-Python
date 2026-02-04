@@ -60,7 +60,6 @@ def levelOrder(root):
     
     result = []
     queue = deque([root])
-    
     while queue:
         level_size = len(queue)
         current_level = []
@@ -75,8 +74,8 @@ def levelOrder(root):
                 queue.append(node.right)
         
         result.append(current_level)
-    
-    return result
+        
+        return result
 
 if __name__ == "__main__":
     # Test Case:
